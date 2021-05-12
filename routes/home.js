@@ -12,7 +12,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || "2021";
 // const SECRET = process.env.SECRET || "secret";
 const People = require("../Models/People");
-const { restart } = require("nodemon");
+
 
 ///////////////////////////////
 // SEED DATA
