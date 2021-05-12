@@ -24,38 +24,50 @@ router.get("/", (req, res) => {
 });
 
 // PEOPLE INDEX ROUTE
-// router.get("/people", async (req, res) => {
-//   try {
-//     // send all people
-//     res.json(await People.find({}));
-//   } catch (error) {
-//     //send error
-//     res.status(400).json(error);
-//   }
-// });
-router.get("/people", (req, res) => {
-  People.find({}, (error, allPeople) => {
-    res.json(allPeople);
-  });
+router.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE DELETE ROUTE
+router.delete("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.findByIdAndRemove(req.params.id));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE UDPATE ROUTE
+router.put("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(
+      await People.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    );
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
 });
 
 // PEOPLE CREATE ROUTE
-// router.post("/people", async (req, res) => {
-//   try {
-//     // send all people
-//     res.json(await People.create(req.body));
-//   } catch (error) {
-//     //send error
-//     res.status(400).json(error);
-//   }
-// });
-router.post("/people/", (req, res) => {
-  People.create(req.body, (error, createdPeople) => {
-    console.log(createdPeople);
-    res.redirect("/people");
-  });
+router.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
 });
-
 
 ///////////////////////////////
 // EXPORT ROUTER
